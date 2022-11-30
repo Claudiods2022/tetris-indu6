@@ -1,4 +1,4 @@
-int puntaje;
+int puntaje=0;
 
 int time_min, time, time_last; // Variables de tiempo
 
