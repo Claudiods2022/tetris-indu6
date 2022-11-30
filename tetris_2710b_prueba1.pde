@@ -46,61 +46,64 @@ void draw() {
 
 PShape pieza(){
   PShape forma=null;
-  
+  forma.createShape();
+  forma.beginShape();
+  forma.setFill(color(0,255,0));
+       
   switch(select_piece){
     case 1: // cuadrado
-        forma.createShape();
-        forma.beginShape();
-          square.setFill(color(0,255,0));
+          
           shape(square,350,50);
           shape(square,400,50);
           shape(square,350,100);
           shape(square,400,100);
-         forma.endShape();
-      break;
-     case 2: // L
-     square.setFill(color(0,255,0));
+        break;
+   
+   case 2: // L
         shape(square,350,50);
         shape(square,350,100);
         shape(square,350,150);
         shape(square,400,150);
-      break;
-     case 3: // T invertida
-     square.setFill(color(0,255,0));
+   
+        break;
+    case 3: // T invertida
         shape(square,350,50);
         shape(square,350,100);
         shape(square,300,100);
         shape(square,400,100);
-      break;
+        break;
+    
      case 4: // Z
-     square.setFill(color(0,255,0));
         shape(square,300,50);
         shape(square,350,50);
         shape(square,350,100);
         shape(square,400,100);
-      break;
+        break;
+     
      case 5: // |
-     square.setFill(color(0,255,0));
         shape(square,300,50);
         shape(square,300,100);
         shape(square,300,150);
         shape(square,300,200);
-      break;
+        break;
+     
      case 6: // L INVERTIDA
-     square.setFill(color(0,255,0));
         shape(square,350,50);
         shape(square,350,100);
         shape(square,350,150);
         shape(square,300,150);
-      break;
+        break;
+     
      case 7: // Z INVERTIDA
-     square.setFill(color(0,255,0));
         shape(square,300,100);
         shape(square,350,100);
         shape(square,350,50);
         shape(square,400,50);
-      break;
+        break;
   }
+  
+  forma.endShape();
+  return forma; 
 }
 
 void mouseClicked(){
