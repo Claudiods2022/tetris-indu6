@@ -1,9 +1,5 @@
-
-PShape square;  // El objeto
-int temp_x, temp_y, temp_y_cell;
-int[][] cell = new int[10][20];
-
 int puntaje;
+
 int time_min, time, time_last; // Variables de tiempo
 
 int pieza_x, pieza_y; // Variables para la creacion de pieza en ejes
@@ -18,6 +14,7 @@ boolean primer_inicio = true;
 void setup() {
   size(800,1000); // Tamaño de la ventana
   // Crear la figura con forma de cuadrado 
+
   square = createShape(RECT, 0, 0, 50, 50); // tamaño de 50x50
   square.setFill(color(0, 0, 255)); // relleno azul
   square.setStroke(true); // bordes negros
@@ -30,7 +27,7 @@ void setup() {
 
 void draw() {
   /* TIEMPO */
-    time = (millis()/1000)-time_last;
+  time = (millis()/1000)-time_last;
   if(time >= 60){
     time_min = time_min+1;
     time_last = millis()/1000;
@@ -41,18 +38,25 @@ void draw() {
     crear_celdas();
     primer_inicio = false;
   }
+  
   textos();
   pieza();
 }
 
-void pieza(){
+
+PShape pieza(){
+  PShape forma=null;
+  
   switch(select_piece){
     case 1: // cuadrado
-    square.setFill(color(0,255,0));
-        shape(square,350,50);
-        shape(square,400,50);
-        shape(square,350,100);
-        shape(square,400,100);
+        forma.createShape();
+        forma.beginShape();
+          square.setFill(color(0,255,0));
+          shape(square,350,50);
+          shape(square,400,50);
+          shape(square,350,100);
+          shape(square,400,100);
+         forma.endShape();
       break;
      case 2: // L
      square.setFill(color(0,255,0));
@@ -107,22 +111,27 @@ void mouseClicked(){
 /*
 CONTROL DE CELDAS
 */
-void crear_celdas(){
-  temp_x = 100;
-  temp_y_cell = 0;
+
+PShape crear_celdas(){
+  int temp_x = 100, temp_y= 0;
+  PShape fondo=null;
+  fondo.createShape();
+  fondo.beginShape();
   for(int x=0;x<10;x++){
-    temp_x = temp_x+50;
+    temp_x += x*50;
     for(int y=0;y<20;y++){
-      temp_y = y*50;
-      square.setFill(color(0, 0, 255));
+      temp_y += y*50;
+      fondo.setFill(color(0, 0, 255));
       shape(square, temp_x, temp_y);
-      agregar_celda_array(x, y);
+      cargar_array(x, y, 0);
     }
+  fondo.endShape();
   }
+  return fondo;
 }
 
-void agregar_celda_array(int x, int y) {
-  cell[x][y] = y;
+void cargar_array(int x, int y,int valor) {
+  cell[x][y] = valor;
 }
 
 /*
